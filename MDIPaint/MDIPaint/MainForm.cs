@@ -82,7 +82,7 @@ namespace MDIPaint
                 case Mode.Pen: { statusLabel.Text = "Перо"; break; }
                 case Mode.Line: { statusLabel.Text = "Линия"; break; }
                 case Mode.Ellips: { statusLabel.Text = "Эллипс"; break; }
-                case Mode.Star: { statusLabel.Text = "Звезда"; break; }
+                case Mode.Star: { statusLabel.Text = $"Звезда ({StarN})"; break; }
                 case Mode.Eraser: { statusLabel.Text = "Ластик"; break; }
             }
         }
@@ -212,6 +212,46 @@ namespace MDIPaint
         private void сохранитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ((Canvas)ActiveMdiChild).Save();
+        }
+
+        private void fourStarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CurMode = Mode.Star;
+            StarN = 4;
+        }
+
+        private void fiveStarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CurMode = Mode.Star;
+            StarN = 5;
+        }
+
+        private void sixStarlStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            CurMode = Mode.Star;
+            StarN = 6;
+        }
+
+        private void другоеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            StarCount dlg = new StarCount();
+            dlg.ShowDialog();
+
+            if (dlg.DialogResult == DialogResult.OK)
+            {
+                CurMode = Mode.Star;
+                StarN = dlg.StarN;
+            }            
+        }
+
+        private void scaleUpStripButton_Click(object sender, EventArgs e)
+        {
+            ((Canvas)ActiveMdiChild).ZoomIn();
+        }
+
+        private void scaleDownStripButton_Click(object sender, EventArgs e)
+        {
+            ((Canvas)ActiveMdiChild).ZoomOut();
         }
     }
 }

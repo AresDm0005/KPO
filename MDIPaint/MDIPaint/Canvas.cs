@@ -83,6 +83,8 @@ namespace MDIPaint
             Graphics.FromImage(bmp).Clear(Color.White);
             pictureBox.Image = bmp;
 
+            pictureBox.MouseWheel += new MouseEventHandler(pictureBox_MouseWheel);
+
             Count++;
             this.Text = $"Холст {Count}";
         }
@@ -95,6 +97,8 @@ namespace MDIPaint
             pictureBox.Width = bmp.Width;
             pictureBox.Height = bmp.Height;
             pictureBox.Image = bmp;
+
+            pictureBox.MouseWheel += new MouseEventHandler(pictureBox_MouseWheel);
 
             FilePath = filepath;
             saveFormat = GetFormatFromPath(filepath);
@@ -168,13 +172,17 @@ namespace MDIPaint
                         break;
                     }
                 case Mode.Eraser: { break; }
-            }            
+            }
+
+            pictureBox.Invalidate();
         }
 
         private void pictureBox_MouseDown(object sender, MouseEventArgs e)
         {
             oldX = e.X;
             oldY = e.Y;
+            X = oldX;
+            Y = oldY;
         }
 
         private void pictureBox_MouseUp(object sender, MouseEventArgs e)
@@ -208,6 +216,45 @@ namespace MDIPaint
 
                 pictureBox.Invalidate();
             }
+
+            X = oldX;
+            Y = oldY;
+        }
+
+        private void pictureBox_MouseWheel(object sender, MouseEventArgs e)
+        {
+            //SaveNeed = true;
+            Bitmap B = new Bitmap(bmp);
+            int width, height;
+            const double delta = 2;
+            if (e.Delta > 0)
+            {
+                width = (int)(B.Width / delta);
+                height = (int)(B.Height / delta);
+            }
+            else
+            {
+                width = (int)(B.Width * delta);
+                height = (int)(B.Height * delta);
+            }
+            Graphics g = Graphics.FromImage(B);
+            Rectangle R1 = new Rectangle(0, 0, B.Width, B.Height);
+            Rectangle R2 = new Rectangle(e.X - width / 2, e.Y - height / 2, width, height);
+            g.Clear(BackColor);
+            g.DrawImage(pictureBox.Image, R1, R2, GraphicsUnit.Pixel);
+            pictureBox.Image = B;
+            pictureBox.Invalidate();
+            bmp = B;
+        }
+
+        public void ZoomIn()
+        {
+            pictureBox_MouseWheel(this, new MouseEventArgs(MouseButtons.Middle, 1, CanvasWidth / 2, CanvasHeight / 2, 1));
+        }
+
+        public void ZoomOut()
+        {
+            pictureBox_MouseWheel(this, new MouseEventArgs(MouseButtons.Middle, 1, CanvasWidth / 2, CanvasHeight / 2, -1));
         }
 
         private void Swap(ref int a, ref int b)

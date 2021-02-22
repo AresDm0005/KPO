@@ -52,7 +52,11 @@ namespace MDIPaint
             this.penStripButton = new System.Windows.Forms.ToolStripButton();
             this.lineStripButton = new System.Windows.Forms.ToolStripButton();
             this.ellipsStripButton = new System.Windows.Forms.ToolStripButton();
-            this.starStripButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.fourStarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fiveStarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sixStarlStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.другоеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eraserStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.brushWidthTextBox = new System.Windows.Forms.ToolStripTextBox();
@@ -66,7 +70,6 @@ namespace MDIPaint
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -103,45 +106,45 @@ namespace MDIPaint
             // новыйToolStripMenuItem
             // 
             this.новыйToolStripMenuItem.Name = "новыйToolStripMenuItem";
-            this.новыйToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.новыйToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.новыйToolStripMenuItem.Text = "Новый";
             this.новыйToolStripMenuItem.Click += new System.EventHandler(this.новыйToolStripMenuItem_Click);
             // 
             // открытьToolStripMenuItem
             // 
             this.открытьToolStripMenuItem.Name = "открытьToolStripMenuItem";
-            this.открытьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.открытьToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.открытьToolStripMenuItem.Text = "Открыть...";
             this.открытьToolStripMenuItem.Click += new System.EventHandler(this.открытьToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(160, 6);
             // 
             // сохранитьToolStripMenuItem
             // 
             this.сохранитьToolStripMenuItem.Name = "сохранитьToolStripMenuItem";
-            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.сохранитьToolStripMenuItem.Text = "Сохранить";
             this.сохранитьToolStripMenuItem.Click += new System.EventHandler(this.сохранитьToolStripMenuItem_Click);
             // 
             // сохранитьКакToolStripMenuItem
             // 
             this.сохранитьКакToolStripMenuItem.Name = "сохранитьКакToolStripMenuItem";
-            this.сохранитьКакToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.сохранитьКакToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.сохранитьКакToolStripMenuItem.Text = "Сохранить как...";
             this.сохранитьКакToolStripMenuItem.Click += new System.EventHandler(this.сохранитьКакToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(160, 6);
             // 
             // выходToolStripMenuItem
             // 
             this.выходToolStripMenuItem.Name = "выходToolStripMenuItem";
-            this.выходToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.выходToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.выходToolStripMenuItem.Text = "Выход";
             this.выходToolStripMenuItem.Click += new System.EventHandler(this.выходToolStripMenuItem_Click);
             // 
@@ -221,14 +224,13 @@ namespace MDIPaint
             this.penStripButton,
             this.lineStripButton,
             this.ellipsStripButton,
-            this.starStripButton,
+            this.toolStripDropDownButton1,
             this.eraserStripButton,
             this.toolStripLabel1,
             this.brushWidthTextBox,
             this.scaleUpStripButton,
             this.scaleDownStripButton,
-            this.colorStripDropDownButton,
-            this.toolStripDropDownButton1});
+            this.colorStripDropDownButton});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1037, 25);
@@ -265,15 +267,47 @@ namespace MDIPaint
             this.ellipsStripButton.Text = "toolStripButton3";
             this.ellipsStripButton.Click += new System.EventHandler(this.ellipsStripButton_Click);
             // 
-            // starStripButton
+            // toolStripDropDownButton1
             // 
-            this.starStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.starStripButton.Image = ((System.Drawing.Image)(resources.GetObject("starStripButton.Image")));
-            this.starStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.starStripButton.Name = "starStripButton";
-            this.starStripButton.Size = new System.Drawing.Size(23, 22);
-            this.starStripButton.Text = "toolStripButton4";
-            this.starStripButton.Click += new System.EventHandler(this.starStripButton_Click);
+            this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fourStarToolStripMenuItem,
+            this.fiveStarToolStripMenuItem,
+            this.sixStarlStripMenuItem1,
+            this.другоеToolStripMenuItem});
+            this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
+            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(29, 22);
+            this.toolStripDropDownButton1.Text = "toolStripDropDownButton1";
+            // 
+            // fourStarToolStripMenuItem
+            // 
+            this.fourStarToolStripMenuItem.Name = "fourStarToolStripMenuItem";
+            this.fourStarToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.fourStarToolStripMenuItem.Text = "Четырехконечная";
+            this.fourStarToolStripMenuItem.Click += new System.EventHandler(this.fourStarToolStripMenuItem_Click);
+            // 
+            // fiveStarToolStripMenuItem
+            // 
+            this.fiveStarToolStripMenuItem.Name = "fiveStarToolStripMenuItem";
+            this.fiveStarToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.fiveStarToolStripMenuItem.Text = "Пятиконечная";
+            this.fiveStarToolStripMenuItem.Click += new System.EventHandler(this.fiveStarToolStripMenuItem_Click);
+            // 
+            // sixStarlStripMenuItem1
+            // 
+            this.sixStarlStripMenuItem1.Name = "sixStarlStripMenuItem1";
+            this.sixStarlStripMenuItem1.Size = new System.Drawing.Size(173, 22);
+            this.sixStarlStripMenuItem1.Text = "Шестиконечная";
+            this.sixStarlStripMenuItem1.Click += new System.EventHandler(this.sixStarlStripMenuItem1_Click);
+            // 
+            // другоеToolStripMenuItem
+            // 
+            this.другоеToolStripMenuItem.Name = "другоеToolStripMenuItem";
+            this.другоеToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.другоеToolStripMenuItem.Text = "Другое...";
+            this.другоеToolStripMenuItem.Click += new System.EventHandler(this.другоеToolStripMenuItem_Click);
             // 
             // eraserStripButton
             // 
@@ -308,6 +342,7 @@ namespace MDIPaint
             this.scaleUpStripButton.Name = "scaleUpStripButton";
             this.scaleUpStripButton.Size = new System.Drawing.Size(23, 22);
             this.scaleUpStripButton.Text = "toolStripButton6";
+            this.scaleUpStripButton.Click += new System.EventHandler(this.scaleUpStripButton_Click);
             // 
             // scaleDownStripButton
             // 
@@ -317,6 +352,7 @@ namespace MDIPaint
             this.scaleDownStripButton.Name = "scaleDownStripButton";
             this.scaleDownStripButton.Size = new System.Drawing.Size(23, 22);
             this.scaleDownStripButton.Text = "toolStripButton7";
+            this.scaleDownStripButton.Click += new System.EventHandler(this.scaleDownStripButton_Click);
             // 
             // colorStripDropDownButton
             // 
@@ -386,15 +422,6 @@ namespace MDIPaint
             this.statusLabel.Size = new System.Drawing.Size(72, 17);
             this.statusLabel.Text = "инструмент";
             // 
-            // toolStripDropDownButton1
-            // 
-            this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
-            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(29, 22);
-            this.toolStripDropDownButton1.Text = "toolStripDropDownButton1";
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -443,7 +470,6 @@ namespace MDIPaint
         private System.Windows.Forms.ToolStripButton penStripButton;
         private System.Windows.Forms.ToolStripButton lineStripButton;
         private System.Windows.Forms.ToolStripButton ellipsStripButton;
-        private System.Windows.Forms.ToolStripButton starStripButton;
         private System.Windows.Forms.ToolStripButton eraserStripButton;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.ToolStripButton scaleUpStripButton;
@@ -458,6 +484,10 @@ namespace MDIPaint
         private System.Windows.Forms.ToolStripStatusLabel statusLabel;
         private System.Windows.Forms.ToolStripTextBox brushWidthTextBox;
         private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
+        private System.Windows.Forms.ToolStripMenuItem fourStarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fiveStarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sixStarlStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem другоеToolStripMenuItem;
     }
 }
 
