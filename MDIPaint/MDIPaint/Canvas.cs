@@ -104,6 +104,11 @@ namespace MDIPaint
             saveFormat = GetFormatFromPath(filepath);
         }
 
+        public Image GetImage()
+        {
+            return bmp;
+        }
+
         private void pictureBox_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)

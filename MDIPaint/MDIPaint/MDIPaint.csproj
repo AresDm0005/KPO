@@ -34,6 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -64,6 +65,12 @@
     <Compile Include="CanvasSize.Designer.cs">
       <DependentUpon>CanvasSize.cs</DependentUpon>
     </Compile>
+    <Compile Include="FilterList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FilterList.Designer.cs">
+      <DependentUpon>FilterList.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -86,6 +93,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CanvasSize.resx">
       <DependentUpon>CanvasSize.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FilterList.resx">
+      <DependentUpon>FilterList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -114,6 +124,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PluginInterface\PluginInterface.csproj">
+      <Project>{b1d23c3d-e986-493e-a2fb-1d64bf989244}</Project>
+      <Name>PluginInterface</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

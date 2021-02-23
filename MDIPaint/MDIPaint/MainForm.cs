@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PluginInterface;
+using System.Configuration;
 
 namespace MDIPaint
 {
@@ -19,6 +23,9 @@ namespace MDIPaint
         public static Color CurColor = Color.Black;
         public static int CurWidth = 3;
         public static int StarN = 5;
+
+        Dictionary<string, IPlugin> plugins = new Dictionary<string, IPlugin>();
+        List<Tuple<int, int>> tuples;
 
         public Mode CurMode
         {
@@ -34,6 +41,9 @@ namespace MDIPaint
         {
             InitializeComponent();
             CurMode = Mode.Pen;
+                        
+            FindPlugins();
+            CreatePluginMenu();
         }
 
         private void выходToolStripMenuItem_Click(object sender, EventArgs e)
@@ -214,6 +224,7 @@ namespace MDIPaint
             ((Canvas)ActiveMdiChild).Save();
         }
 
+        #region StarN
         private void fourStarToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CurMode = Mode.Star;
@@ -243,6 +254,7 @@ namespace MDIPaint
                 StarN = dlg.StarN;
             }            
         }
+        #endregion
 
         private void scaleUpStripButton_Click(object sender, EventArgs e)
         {
@@ -252,6 +264,124 @@ namespace MDIPaint
         private void scaleDownStripButton_Click(object sender, EventArgs e)
         {
             ((Canvas)ActiveMdiChild).ZoomOut();
+        }
+
+        #region Plugins
+        private void LoadPluginsAutomatically()
+        {
+            // папка с плагинами
+            string folder = System.AppDomain.CurrentDomain.BaseDirectory;
+            // dll-файлы в этой папке
+            string[] files = Directory.GetFiles(folder, "*.dll");
+            tuples = new List<Tuple<int, int>>();
+            foreach (string file in files)
+                try
+                {
+                    Assembly assembly = Assembly.LoadFile(file);
+                    foreach (Type type in assembly.GetTypes())
+                    {                        
+                        var attr = type.GetCustomAttribute<VersionAttribute>();
+                        Type iface = type.GetInterface("PluginInterface.IPlugin");
+                        if (iface != null)
+                        {
+                            IPlugin plugin = (IPlugin)Activator.CreateInstance(type);
+                            plugins.Add(plugin.Name, plugin);
+                            tuples.Add(new Tuple<int, int>(attr.Major, attr.Minor));                            
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ошибка загрузки плагина\n" + ex.Message);
+                }
+        }
+
+        private void LoadPluginsManually()
+        {
+            string folder = System.AppDomain.CurrentDomain.BaseDirectory;
+            tuples = new List<Tuple<int, int>>();
+
+            var sAll = ConfigurationManager.AppSettings;
+
+            foreach (string item in sAll)
+            {
+                try
+                {
+                    string f = sAll.GetValues(item)[0];
+                    Assembly assembly = Assembly.LoadFile(folder + @"\" + sAll.GetValues(item)[0]);
+                    foreach (Type type in assembly.GetTypes())
+                    {
+                        var attr = type.GetCustomAttribute<VersionAttribute>();
+                        Type iface = type.GetInterface("PluginInterface.IPlugin");
+                        if (iface != null)
+                        {
+                            IPlugin plugin = (IPlugin)Activator.CreateInstance(type);
+                            plugins.Add(plugin.Name, plugin);
+                            tuples.Add(new Tuple<int, int>(attr.Major, attr.Minor));
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ошибка загрузки плагина\n" + ex.Message);
+                }
+            }
+        }
+
+        private void FindPlugins()
+        {
+            bool avtm = false;
+            
+            try
+            {
+                var aSet = ConfigurationManager.AppSettings;
+                var sAll = ConfigurationManager.AppSettings.AllKeys;
+
+                if (sAll.Length == 0)
+                    avtm = true;
+                
+                string f = aSet.Get(sAll[0]);
+                if (sAll.Length == 1 && aSet.Get(sAll[0]).Equals("Auto"))
+                    avtm = true;
+
+            } 
+            catch (Exception ex)
+            {
+                avtm = true;
+            }
+
+            if (avtm)
+                LoadPluginsAutomatically();
+            else
+                LoadPluginsManually();
+            
+        }
+
+        private void CreatePluginMenu() 
+        {
+            foreach (IPlugin plugin in plugins.Values)
+            {
+                var i = new ToolStripMenuItem(plugin.Name);
+                i.Click += new EventHandler(OnPluginClick);
+                фильтрыToolStripMenuItem.DropDownItems.Add(i);
+            }
+        }
+
+        private void OnPluginClick(object sender, EventArgs args)
+        {
+            if (!(ActiveMdiChild == null))
+            {
+                IPlugin plugin = plugins[((ToolStripMenuItem)sender).Text];
+                plugin.Transform((Bitmap)((Canvas)ActiveMdiChild).GetImage());
+            }
+        }
+
+        #endregion
+
+        private void списокФильтровToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FilterList dlg = new FilterList(plugins.Values.ToArray(), tuples.ToArray());
+            dlg.ShowDialog();
         }
     }
 }

@@ -70,6 +70,8 @@ namespace MDIPaint
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.фильтрыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.списокФильтровToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -80,6 +82,7 @@ namespace MDIPaint
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.файлToolStripMenuItem,
             this.рисунокToolStripMenuItem,
+            this.фильтрыToolStripMenuItem,
             this.окноToolStripMenuItem,
             this.справкаToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
@@ -327,7 +330,6 @@ namespace MDIPaint
             // 
             // brushWidthTextBox
             // 
-            this.brushWidthTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.brushWidthTextBox.Name = "brushWidthTextBox";
             this.brushWidthTextBox.Size = new System.Drawing.Size(50, 25);
             this.brushWidthTextBox.Text = "1";
@@ -422,6 +424,21 @@ namespace MDIPaint
             this.statusLabel.Size = new System.Drawing.Size(72, 17);
             this.statusLabel.Text = "инструмент";
             // 
+            // фильтрыToolStripMenuItem
+            // 
+            this.фильтрыToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.списокФильтровToolStripMenuItem});
+            this.фильтрыToolStripMenuItem.Name = "фильтрыToolStripMenuItem";
+            this.фильтрыToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
+            this.фильтрыToolStripMenuItem.Text = "Фильтры";
+            // 
+            // списокФильтровToolStripMenuItem
+            // 
+            this.списокФильтровToolStripMenuItem.Name = "списокФильтровToolStripMenuItem";
+            this.списокФильтровToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.списокФильтровToolStripMenuItem.Text = "Список фильтров";
+            this.списокФильтровToolStripMenuItem.Click += new System.EventHandler(this.списокФильтровToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -488,6 +505,8 @@ namespace MDIPaint
         private System.Windows.Forms.ToolStripMenuItem fiveStarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sixStarlStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem другоеToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem фильтрыToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem списокФильтровToolStripMenuItem;
     }
 }
 
