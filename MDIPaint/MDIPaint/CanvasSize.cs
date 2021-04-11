@@ -53,11 +53,14 @@ namespace MDIPaint
 
         private void okButton_Click(object sender, EventArgs e)
         {
-            string msg = "";
+            string msg = String.Empty;
 
             try
             {
                 int tmp = Convert.ToInt32(widthBox.Text);
+
+                if (tmp > 1920)
+                    msg += "Максимально поддерживаемый размер - 1920х1080";
             }
             catch (Exception ex)
             {
@@ -67,6 +70,9 @@ namespace MDIPaint
             try
             {
                 int tmp = Convert.ToInt32(heightBox.Text);
+
+                if (tmp > 1080)
+                    msg += "Максимально поддерживаемый размер - 1920х1080";
             }
             catch (Exception ex)
             {
@@ -75,8 +81,13 @@ namespace MDIPaint
 
             if (!msg.Equals(String.Empty))
             {
-                MessageBox.Show(msg, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                DialogResult = DialogResult.None;
+
+                MessageBox.Show(msg, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error, 
+                    MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+            }
+            else
+            {
+                DialogResult = DialogResult.OK;
             }
         }
     }

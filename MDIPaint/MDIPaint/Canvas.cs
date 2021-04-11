@@ -52,7 +52,7 @@ namespace MDIPaint
                 bmp = tbmp;
                 pictureBox.Image = bmp;
 
-                this.Width = value;
+                this.Width = value + 20;
             }
         }
 
@@ -72,7 +72,7 @@ namespace MDIPaint
                 bmp = tbmp;
                 pictureBox.Image = bmp;
 
-                this.Height = value;
+                this.Height = value + 20;
             }
         }
 

@@ -122,7 +122,7 @@ namespace MDIPaint
 
         private void otherToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ColorDialog dlg = new ColorDialog();
+            ColorDialog dlg = new ColorDialog();            
             if (dlg.ShowDialog() == DialogResult.OK)
                 CurColor = dlg.Color;
         }
