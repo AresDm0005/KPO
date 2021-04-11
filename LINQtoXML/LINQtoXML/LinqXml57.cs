@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Xml.Linq;
 
 
@@ -9,9 +7,9 @@ namespace LINQtoXML
     class LinqXml57
     {
         private readonly string Path =
-            "C:\\Users\\Arsen\\Desktop\\Универ\\Курс 2\\КПО\\Код\\KPO\\LINQtoXML\\LINQtoXML\\bin\\Debug\\XMLs\\Task57In.xml";
+            $"{Program.BasePath}\\XMLs\\Task57In.xml";
         private readonly string OutPath =
-            "C:\\Users\\Arsen\\Desktop\\Универ\\Курс 2\\КПО\\Код\\KPO\\LINQtoXML\\LINQtoXML\\bin\\Debug\\XMLs\\Task57Out.xml";
+            $"{Program.BasePath}\\XMLs\\Task57Out.xml";
 
         private readonly string S1;
         private readonly string S2;
@@ -34,10 +32,8 @@ namespace LINQtoXML
                 elem.Name =
                     ((elem.Ancestors().Count() <= 1) ? (XNamespace)S1 : (XNamespace)S2) +
                     elem.Name.LocalName;
-
-            // doc.Descendants().Attributes("xmlns").Remove();
-            doc.Save(OutPath);
-            //Console.WriteLine(doc);            
+                        
+            doc.Save(OutPath);        
         }
 
     }

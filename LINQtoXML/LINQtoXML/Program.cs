@@ -1,30 +1,27 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LINQtoXML
 {
     class Program
     {
-        
+        public static readonly string BasePath = 
+            System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
 
         static void Main(string[] args)
         {
-            /*
+            /* 
             LinqXml7 task1 = new LinqXml7();
-            task1.GenerateXMLDocument();
+            task1.Task();
             */
 
             /*
             LinqXml17 task2 = new LinqXml17();
-            task2.FindElementsWithDirectDescendantTextNode();
+            task2.Task(true);
             */
 
             /*
             LinqXml27 task3 = new LinqXml27();
-            task3.Remove2ndLevelDescendantNodesExceptLastOnes();
+            task3.Task();
             */
 
             /*
@@ -47,8 +44,10 @@ namespace LINQtoXML
             task7.Task();
             */
 
+            
             LinqXml77 task8 = new LinqXml77();
             task8.Task();
+            
         }
     }
 }

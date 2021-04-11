@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 
@@ -9,9 +8,9 @@ namespace LINQtoXML
     class LinqXml37
     {
         private readonly string Path =
-            "C:\\Users\\Arsen\\Desktop\\Универ\\Курс 2\\КПО\\Код\\KPO\\LINQtoXML\\LINQtoXML\\bin\\Debug\\XMLs\\Task37In.xml";
+            $"{Program.BasePath}\\XMLs\\Task37In.xml";
         private readonly string OutPath =
-            "C:\\Users\\Arsen\\Desktop\\Универ\\Курс 2\\КПО\\Код\\KPO\\LINQtoXML\\LINQtoXML\\bin\\Debug\\XMLs\\Task37Out.xml";
+            $"{Program.BasePath}\\XMLs\\XMLs\\Task37Out.xml";
 
         public LinqXml37()
         {
@@ -27,8 +26,7 @@ namespace LINQtoXML
             foreach(var elem in secondLevel)            
                 elem.SetValue(elem.Value);
 
-            doc.Save(OutPath);
-            //Console.WriteLine(doc);            
+            doc.Save(OutPath);            
         }
 
     }

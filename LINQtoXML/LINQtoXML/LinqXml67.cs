@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 
@@ -9,10 +8,10 @@ namespace LINQtoXML
     class LinqXml67
     {
         private readonly string Path =
-            "C:\\Users\\Arsen\\Desktop\\Универ\\Курс 2\\КПО\\Код\\KPO\\LINQtoXML\\LINQtoXML\\bin\\Debug\\XMLs\\Task67In.xml";
+            $"{Program.BasePath}\\XMLs\\Task67In.xml";
         private readonly string OutPath =
-            "C:\\Users\\Arsen\\Desktop\\Универ\\Курс 2\\КПО\\Код\\KPO\\LINQtoXML\\LINQtoXML\\bin\\Debug\\XMLs\\Task67Out.xml";
-
+            $"{Program.BasePath}\\XMLs\\Task67Out.xml";
+        
         public LinqXml67()
         {
         }
@@ -44,8 +43,7 @@ namespace LINQtoXML
                             Where(a => Convert.ToInt32(a.Element("month").Value) == y).Count())
                     )))));
             
-            doc.Save(OutPath);
-            //Console.WriteLine(doc);            
+            doc.Save(OutPath);        
         }
 
     }

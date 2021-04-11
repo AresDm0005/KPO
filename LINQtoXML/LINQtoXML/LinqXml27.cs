@@ -1,41 +1,30 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Xml.Linq;
-
 
 namespace LINQtoXML
 {
     class LinqXml27
     {
         private readonly string Path =
-            "C:\\Users\\Arsen\\Desktop\\Универ\\Курс 2\\КПО\\Код\\KPO\\LINQtoXML\\LINQtoXML\\bin\\Debug\\XMLs\\rdy.xml";
+            $"{Program.BasePath}\\XMLs\\Task27In.xml";
         private readonly string OutPath =
-            "C:\\Users\\Arsen\\Desktop\\Универ\\Курс 2\\КПО\\Код\\KPO\\LINQtoXML\\LINQtoXML\\bin\\Debug\\XMLs\\Task27.xml";
+            $"{Program.BasePath}\\XMLs\\Task27Out.xml";
 
         public LinqXml27()
         {
         }
 
-        public void Remove2ndLevelDescendantNodesExceptLastOnes()
+        public void Task()
         {
             XDocument doc = XDocument.Load(Path);
 
-            var secondLevel = doc.Descendants().Where(x => (x.Parent != null && x.Parent.Parent == doc.Root));
-            var toDel = secondLevel.Where(x => x.Nodes().Count() > 1).Select(x => x.Nodes().Where(y => y != x.LastNode).ToList()).ToList();
+            var secLvlElems = doc.Descendants().Where(x => (x.Parent != null && x.Parent.Parent == doc.Root)).
+                Where(x => x.Nodes().Count() > 1);
 
-            foreach (var sndLvl in toDel)
-            {
-                foreach (var node in sndLvl)
-                {
-                    Console.WriteLine(node);
+            foreach (var elem in secLvlElems)
+                elem.ReplaceNodes(elem.LastNode);
 
-                    node.Remove();
-                }
-            }
-
-            doc.Save(OutPath);
-            //Console.WriteLine(doc);
+            doc.Save(OutPath);            
         }
-
     }
 }

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Xml.Linq;
 
 
@@ -9,9 +7,9 @@ namespace LINQtoXML
     class LinqXml47
     {
         private readonly string Path =
-            "C:\\Users\\Arsen\\Desktop\\Универ\\Курс 2\\КПО\\Код\\KPO\\LINQtoXML\\LINQtoXML\\bin\\Debug\\XMLs\\Task47In.xml";
+            $"{Program.BasePath}\\XMLs\\Task47In.xml";
         private readonly string OutPath =
-            "C:\\Users\\Arsen\\Desktop\\Универ\\Курс 2\\КПО\\Код\\KPO\\LINQtoXML\\LINQtoXML\\bin\\Debug\\XMLs\\Task47Out.xml";
+            $"{Program.BasePath}\\XMLs\\Task47Out.xml";
 
         public LinqXml47()
         {
@@ -24,14 +22,12 @@ namespace LINQtoXML
             var secondLevel = doc.Descendants().Where(x => x.Descendants().Count() > 0);
 
 
-            foreach (var elem in secondLevel)
-            {
+            foreach (var elem in secondLevel)            
                 elem.Elements().First().
                     AddAfterSelf(new XElement("has-comments", elem.DescendantNodes().Any(x => x is XComment)));
-            }
+            
 
-            doc.Save(OutPath);
-            //Console.WriteLine(doc);            
+            doc.Save(OutPath);          
         }
 
     }
