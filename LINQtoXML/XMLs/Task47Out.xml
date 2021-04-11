@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<описания-книг>
+  <title-info>
+    <!--Крайне интересная книга-->
+    <genre match="90">sf_fantasy</genre>
+    <has-comments>true</has-comments>
+    <author>
+      <first-name>Джон</first-name>
+      <has-comments>false</has-comments>
+      <middle-name>
+        <name>Рональд</name>
+        <has-comments>false</has-comments>
+        <name>Руэл</name>
+      </middle-name>
+      <last-name>Толкин</last-name>
+    </author>
+    <book-title>Возвращение Короля</book-title>
+    <lang>ru</lang>
+    <src-lang>en</src-lang>
+    <translator>
+      <first-name>Мария</first-name>
+      <has-comments>false</has-comments>
+      <last-name>Каменкович</last-name>
+    </translator>
+    <translator>
+      <first-name>Валерий</first-name>
+      <has-comments>false</has-comments>
+      <last-name>Каррик</last-name>
+    </translator>
+    <sequence name="Властелин Колец" number="3" />
+  </title-info>
+  <has-comments>true</has-comments>
+  <title-info>
+    <genre>sf</genre>
+    <has-comments>true</has-comments>
+    <author>
+      <!--Старший -->
+      <first-name>Аркадий</first-name>
+      <has-comments>true</has-comments>
+      <last-name>Стругацкий</last-name>
+    </author>
+    <author>
+      <first-name>Борис</first-name>
+      <has-comments>false</has-comments>
+      <last-name>Стругацкий</last-name>
+    </author>
+    <book-title>Улитка на склоне</book-title>
+    <lang>ru</lang>
+  </title-info>
+</описания-книг>

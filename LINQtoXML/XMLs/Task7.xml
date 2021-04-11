@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<root>
+  <line>
+    <sum-positive>12</sum-positive>
+    <number-negative>-7</number-negative>
+    <number-negative>-2</number-negative>
+  </line>
+  <line>
+    <sum-positive>6</sum-positive>
+  </line>
+  <line>
+    <sum-positive>0</sum-positive>
+    <number-negative>-4</number-negative>
+  </line>
+  <line>
+    <sum-positive>11</sum-positive>
+    <number-negative>-1</number-negative>
+  </line>
+  <line>
+    <sum-positive>1</sum-positive>
+  </line>
+  <line>
+    <sum-positive>6</sum-positive>
+    <number-negative>-4</number-negative>
+  </line>
+</root>

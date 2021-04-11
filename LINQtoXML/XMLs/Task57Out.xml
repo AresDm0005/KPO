@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<x:описания-книг xmlns:x="localhost" xmlns:y="wanhost">
+  <x:title-info>
+    <y:genre match="90">sf_fantasy</y:genre>
+    <y:author>
+      <y:first-name>Джон</y:first-name>
+      <y:middle-name>Рональд Руэл</y:middle-name>
+      <y:last-name>Толкин</y:last-name>
+    </y:author>
+    <y:book-title>Возвращение Короля</y:book-title>
+    <y:lang>ru</y:lang>
+    <y:src-lang>en</y:src-lang>
+    <y:translator>
+      <y:first-name>Мария</y:first-name>
+      <y:last-name>Каменкович</y:last-name>
+    </y:translator>
+    <y:translator>
+      <y:first-name>Валерий</y:first-name>
+      <y:last-name>Каррик</y:last-name>
+    </y:translator>
+    <y:sequence name="Властелин Колец" number="3" />
+  </x:title-info>
+  <x:title-info>
+    <y:genre>sf</y:genre>
+    <y:author>
+      <y:first-name>Аркадий</y:first-name>
+      <y:last-name>Стругацкий</y:last-name>
+    </y:author>
+    <y:author>
+      <y:first-name>Борис</y:first-name>
+      <y:last-name>Стругацкий</y:last-name>
+    </y:author>
+    <y:book-title>Улитка на склоне</y:book-title>
+    <y:lang>ru</y:lang>
+  </x:title-info>
+</x:описания-книг>

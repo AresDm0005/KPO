@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<debts>
+	<debt house="12" flat="129" name="Сергеев Т.М.">1833.32</debt>	
+	<debt house="1" flat="13" name="Иванов И.И.">1311.66</debt>
+	<debt house="5" flat="100" name="Сергеев В.В.">525</debt>
+	<debt house="12" flat="28" name="Алексеев Ф.А.">444.15</debt>
+	<debt house="12" flat="141" name="Иванчук Р.Р.">777.77</debt>
+	<debt house="3" flat="77" name="Аркадьев Т.М.">51.2</debt>
+	<debt house="36" flat="97" name="Ильин П.И.">1055.59</debt>
+</debts>

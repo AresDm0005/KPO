@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<описания-книг>
+  <title-info>
+    <genre match="90">sf_fantasy</genre>
+    <author>ДжонРональдРуэлТолкин</author>
+    <book-title>Возвращение Короля</book-title>
+    <lang>ru</lang>
+    <src-lang>en</src-lang>
+    <translator>МарияКаменкович</translator>
+    <translator>ВалерийКаррик</translator>
+    <sequence name="Властелин Колец" number="3" />
+  </title-info>
+  <title-info>
+    <genre>sf</genre>
+    <author>АркадийСтругацкий</author>
+    <author>БорисСтругацкий</author>
+    <book-title>Улитка на склоне</book-title>
+    <lang>ru</lang>
+  </title-info>
+</описания-книг>

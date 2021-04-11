@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<clients>
+	<client id="7" time="PT0H55M">
+		<year>2020</year>
+		<month>2</month>
+	</client>
+	
+	<client id="3" time="PT6H25M">
+		<year>2020</year>
+		<month>12</month>
+	</client>
+	
+	<client id="15" time="PT1H15M">
+		<year>2020</year>
+		<month>7</month>
+	</client>
+	
+	<client id="3" time="PT5H00M">
+		<year>2020</year>
+		<month>7</month>
+	</client>
+	
+	<client id="10" time="PT5H13M">
+		<year>2019</year>
+		<month>4</month>
+	</client>
+	
+	<client id="11" time="PT8H05M">
+		<year>2019</year>
+		<month>6</month>
+	</client>	
+</clients>
