@@ -52,6 +52,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddChangeContactForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddChangeContactForm.Designer.cs">
+      <DependentUpon>AddChangeContactForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddChangePersonForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -70,6 +76,9 @@
     <Compile Include="Models\Person.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AddChangeContactForm.resx">
+      <DependentUpon>AddChangeContactForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddChangePersonForm.resx">
       <DependentUpon>AddChangePersonForm.cs</DependentUpon>
     </EmbeddedResource>

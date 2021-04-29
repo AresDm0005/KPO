@@ -12,48 +12,45 @@ using NotebookAPI.Models;
 
 namespace NotebookAPI.Controllers
 {
-    public class PeopleController : ApiController
+    public class ContactsController : ApiController
     {
         private PersonContext db = new PersonContext();
 
-        // GET: api/People
-        public IQueryable<Person> GetPeople()
+        // GET: api/Contacts
+        public IQueryable<Contact> GetContacts()
         {
-            return db.People.Include("Contacts").Include("Contacts.ContactType");            
+            return db.Contacts.Include("ContactType");
         }
 
-        // GET: api/People/5
-        [ResponseType(typeof(Person))]
-        public IHttpActionResult GetPerson(int id)
+        // GET: api/Contacts/5
+        [ResponseType(typeof(Contact))]
+        public IHttpActionResult GetContact(int id)
         {
-            IQueryable<Person> q = db.People.Include("Contacts").Include("Contacts.ContactType").
-                Where(item => item.Id == id);
-
+            IQueryable<Contact> q = db.Contacts.Include("ContactType").Where(item => item.Id == id);
             if (q.Count() == 0)
             {
                 return NotFound();
             }
 
-            Person person = q.First();
-
-            return Ok(person);
+            Contact contact = q.First();
+            return Ok(contact);
         }
 
-        // PUT: api/People/5
+        // PUT: api/Contacts/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutPerson(int id, Person person)
+        public IHttpActionResult PutContact(int id, Contact contact)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != person.Id)
+            if (id != contact.Id)
             {
                 return BadRequest();
             }
 
-            db.Entry(person).State = EntityState.Modified;
+            db.Entry(contact).State = EntityState.Modified;
 
             try
             {
@@ -61,7 +58,7 @@ namespace NotebookAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!PersonExists(id))
+                if (!ContactExists(id))
                 {
                     return NotFound();
                 }
@@ -74,35 +71,35 @@ namespace NotebookAPI.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/People
-        [ResponseType(typeof(Person))]
-        public IHttpActionResult PostPerson(Person person)
+        // POST: api/Contacts
+        [ResponseType(typeof(Contact))]
+        public IHttpActionResult PostContact(Contact contact)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.People.Add(person);
+            db.Contacts.Add(contact);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = person.Id }, person);
+            return CreatedAtRoute("DefaultApi", new { id = contact.Id }, contact);
         }
 
-        // DELETE: api/People/5
-        [ResponseType(typeof(Person))]
-        public IHttpActionResult DeletePerson(int id)
+        // DELETE: api/Contacts/5
+        [ResponseType(typeof(Contact))]
+        public IHttpActionResult DeleteContact(int id)
         {
-            Person person = db.People.Find(id);
-            if (person == null)
+            Contact contact = db.Contacts.Find(id);
+            if (contact == null)
             {
                 return NotFound();
             }
 
-            db.People.Remove(person);
+            db.Contacts.Remove(contact);
             db.SaveChanges();
 
-            return Ok(person);
+            return Ok(contact);
         }
 
         protected override void Dispose(bool disposing)
@@ -114,9 +111,9 @@ namespace NotebookAPI.Controllers
             base.Dispose(disposing);
         }
 
-        private bool PersonExists(int id)
+        private bool ContactExists(int id)
         {
-            return db.People.Count(e => e.Id == id) > 0;
+            return db.Contacts.Count(e => e.Id == id) > 0;
         }
     }
 }
