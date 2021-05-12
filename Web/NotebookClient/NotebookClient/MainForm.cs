@@ -30,7 +30,6 @@ namespace NotebookClient
 
                 UpdateDisplayedData();
             }
-
         }
 
         private void addBtn_Click(object sender, EventArgs e)
@@ -67,7 +66,7 @@ namespace NotebookClient
         }
 
         private void UpdateDisplayedData()
-        {
+        {            
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri(_baseAddress);
@@ -87,8 +86,8 @@ namespace NotebookClient
                         item.Tag = p.Id;
                         listView.Items.Add(item);                        
                     }
-                }
-            }
+                }                
+            }            
         }
 
         private void Delete(int delete)
@@ -100,7 +99,7 @@ namespace NotebookClient
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
                 HttpResponseMessage response = client.DeleteAsync("api/People/" + delete).Result;
-
+                MessageBox.Show(response.StatusCode.ToString());
             }
         }
 
@@ -152,6 +151,112 @@ namespace NotebookClient
             }
 
             return person;
+        }
+
+        private void listView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listView.SelectedItems.Count == 0)
+                return;
+
+            int id = (int)listView.SelectedItems[0].Tag;
+            Person person = GetPerson(id);
+
+            contactListView.Items.Clear();
+            foreach(var contact in person.Contacts)
+            {
+                ListViewItem item = new ListViewItem(new[] { contact.ContactType.Title, contact.Value, contact.ContactType.Id.ToString() });
+                item.Tag = contact.Id;
+                contactListView.Items.Add(item);
+            }
+        }
+
+        private void DeleteContact(int delete)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(_baseAddress);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                HttpResponseMessage response = client.DeleteAsync("api/contacts/" + delete).Result;
+            }
+        }
+
+        private void AddContact(int person, int contactType, string value)
+        {
+            Contact contact = new Contact() {  PersonId = person,  ContactTypeId = contactType, Value = value};
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(_baseAddress);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                HttpResponseMessage response = client.PostAsJsonAsync("api/contacts/", contact).Result;
+            }
+        }
+
+        private void UpdateContact(int id, int person, int contactType, string value)
+        {
+            Contact contact = new Contact() { Id = id, PersonId = person, ContactTypeId = contactType, Value = value };
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(_baseAddress);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                HttpResponseMessage response = client.PutAsJsonAsync($"api/contacts/{id}", contact).Result;
+                //MessageBox.Show(response.StatusCode.ToString());
+            }
+        }
+
+        private void addContactBtn_Click(object sender, EventArgs e)
+        {
+            if (listView.SelectedItems.Count == 0)
+                return;
+
+            AddChangeContactForm form = new AddChangeContactForm();
+            form.ShowDialog();
+
+            if (form.DialogResult == DialogResult.OK)
+            {
+                AddContact((int)listView.SelectedItems[0].Tag, form.ContactType, form.Value);
+
+                UpdateDisplayedData();
+            }
+        }
+
+        private void chgContactBtn_Click(object sender, EventArgs e)
+        {
+            if (contactListView.SelectedItems.Count == 0)
+                return;
+
+            int id = (int)contactListView.SelectedItems[0].Tag;
+            int pId = (int)listView.SelectedItems[0].Tag;
+
+            AddChangeContactForm form = new AddChangeContactForm(contactListView.SelectedItems[0].SubItems[1].Text,
+                Convert.ToInt32(contactListView.SelectedItems[0].SubItems[2].Text));
+            form.ShowDialog();
+
+            if (form.DialogResult == DialogResult.OK)
+            {
+                UpdateContact(id, pId, form.ContactType, form.Value);
+
+                UpdateDisplayedData();
+            }
+        }
+
+        private void delContactBtn_Click(object sender, EventArgs e)
+        {
+            if (contactListView.SelectedItems.Count != 0)
+            {
+                int id = (int)contactListView.SelectedItems[0].Tag;
+
+                DeleteContact(id);
+
+                UpdateDisplayedData();
+            }
         }
     }
 }
